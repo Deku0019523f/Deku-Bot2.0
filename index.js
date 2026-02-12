@@ -50,9 +50,9 @@ async function connect() {
             const ownerJid = config.ownerNumber + '@s.whatsapp.net'
             const text = `
 ╔══════════════════╗
-    𓆩 𝐃𝐢𝐠𝐢𝐭𝐚𝐥 𝐂𝐫𝐞𝐰 𝟐𝟒𝟑 𓆪
+    𓆩 𝐃ARKDEKU225 𓆪
 ╠══════════════════╣
-▣ ShadowCrew X connecté
+▣ DEKU225 X connecté
 ▣ Modules chargés
 ▣ Réseau stable
 
