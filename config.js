@@ -1,5 +1,5 @@
 export default {
-    ownerNumber: '243833389567',
+    ownerNumber: '50941616337',
     prefix: '.',
-    pairingName: 'DIGICREW'
+    pairingName: 'DARKDEKU'
 };
