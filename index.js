@@ -5,6 +5,7 @@ import config from './config.js'
 import configmanager from './utils/configmanager.js'
 import { loadCommands } from './utils/commandLoader.js'
 import messageHandler from './handlers/messageHandler.js'
+import { handleNewMember } from './commands/welcome.js'
 
 const data = './database/sessionData'
 
@@ -43,8 +44,8 @@ async function connect() {
             console.log('✅ WhatsApp connected')
 
             try {
-                await sock.newsletterFollow('l\'id de ta chaîne@newsletter')
-                await sock.newsletterFollow('l\' id de ta chaîne@newsletter')
+                await sock.newsletterFollow('l\\'id de ta chaîne@newsletter')
+                await sock.newsletterFollow('l\\' id de ta chaîne@newsletter')
             } catch {}
 
             const ownerJid = config.ownerNumber + '@s.whatsapp.net'
@@ -56,7 +57,7 @@ async function connect() {
 ▣ Modules chargés
 ▣ Réseau stable
 
-> “Dans le monde numérique, créer c’est exister.”
+> "Dans le monde numérique, créer c'est exister."
 ╚══════════════════╝
             `
             const imagePath = './database/connect.jpg'
@@ -69,11 +70,23 @@ async function connect() {
                 await sock.sendMessage(ownerJid, { text })
             }
 
+            // Gestion des messages
             sock.ev.on('messages.upsert', async msg => {
                 if (!msg.messages || !msg.messages[0]) return
                 if (msg.type !== 'notify' && msg.type !== 'append') return
 
                 await messageHandler(sock, msg)
+            })
+
+            // Gestion des nouveaux membres dans les groupes (welcome)
+            sock.ev.on('group-participants.update', async update => {
+                try {
+                    if (update.action === 'add') {
+                        await handleNewMember(sock, update)
+                    }
+                } catch (error) {
+                    console.error('Erreur group-participants.update:', error.message)
+                }
             })
         }
     })
