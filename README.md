@@ -23,7 +23,7 @@
 
 ### 1️⃣ Cloner le dépôt
 ```bash
-git clone https://github.com/ton-repo/DarkDeku225.git
+git clone https://github.com/Deku0019523f/Deku-Bot2.0.git
 cd DarkDeku225
 ```
 
